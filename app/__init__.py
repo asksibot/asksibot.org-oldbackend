@@ -1,3 +1,4 @@
+Initializes your Flask app and brings together other components
 from flask import Flask
 
 def create_app():
