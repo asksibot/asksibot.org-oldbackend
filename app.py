@@ -11,8 +11,11 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
-# Initialize Flask application
-app = Flask(__name__)
+# Assuming your app.py is in 'zollner/asksibot.org-backend'
+# and you want to serve templates from 'zollner/asksibot.org-frontend/templates'
+TEMPLATE_DIR = os.path.abspath('../asksibot.org-frontend/templates')
+app = Flask(__name__, template_folder=TEMPLATE_DIR)
+
 # Use the SECRET_KEY from the environment variable, or default to a local dev key
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'a_default_secret_key_for_local_dev')
 
