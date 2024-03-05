@@ -1,0 +1,35 @@
+// Database configuration
+$host = 'localhost'; // Adjust if your database host is different
+$username = 'feedback_users'; // feedback_users
+$password = '1319Yortug@60'; // 1319Yortug@60
+$database = 'u938149287_asksibotorg'; // Your database name
+
+// Create database connection
+$conn = new mysqli($host, $username, $password, $database);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Prepare and bind
+$stmt = $conn->prepare("INSERT INTO feedback (name, email, message) VALUES (?, ?, ?)");
+$stmt->bind_param("sss", $name, $email, $message);
+
+// Set parameters from POST request
+$name = $_POST['name'];
+$email = $_POST['email'];
+$message = $_POST['message'];
+
+// Execute statement
+if ($stmt->execute()) {
+    // Redirect to the thank-you page upon successful submission
+    header('Location: thank-you.html');
+} else {
+    echo "Error submitting feedback: " . $conn->error;
+}
+
+// Close statement and connection
+$stmt->close();
+$conn->close();
+?>
