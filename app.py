@@ -9,40 +9,38 @@ import os
 
 # Initialize Flask application
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'your_secret_key_here'
+# Use the SECRET_KEY from the environment variable, or default to a local dev key
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'a_default_secret_key_for_local_dev')
 
-# SMTP configuration
+# SMTP configuration from environment variables
 app.config['MAIL_SERVER'] = os.environ.get('SMTP_HOST', 'smtp.titan.email')
 app.config['MAIL_PORT'] = int(os.environ.get('SMTP_PORT', 465))
-app.config['MAIL_USERNAME'] = os.environ.get('SMTP_USER', 'feedback@asksibot.org')
-app.config['MAIL_PASSWORD'] = os.environ.get('SMTP_PASS', 'your_email_password')
+app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
 app.config['MAIL_USE_SSL'] = True
 
 mail = Mail(app)
 
-# Assume you're loading the OpenAI API key from environment variables or another secure location
-openai.api_key = os.environ.get('OPENAI_API_KEY', 'your_openai_api_key_here')
+# Load the OpenAI API key from an environment variable
+openai.api_key = os.environ.get('OPENAI_API_KEY')
 
-# Define FeedbackForm class
 class FeedbackForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired()])
     feedback = StringField('Feedback', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
-# Home route
 @app.route('/')
 def home():
     return render_template('index.html')
 
-# Chatbot route
 @app.route('/chatbot', methods=['POST'])
 def chatbot():
     data = request.get_json()
     user_message = data['message']
     try:
         response = openai.Completion.create(
-            engine="text-davinci-003",  # Adjust as necessary
+            engine="text-davinci-003",  # You might want to update this to the latest model version
             prompt=user_message,
             max_tokens=150
         )
@@ -51,7 +49,6 @@ def chatbot():
     except Exception as e:
         return jsonify({'error': str(e)})
 
-# Feedback submission route
 @app.route('/submit-feedback', methods=['GET', 'POST'])
 def submit_feedback():
     form = FeedbackForm()
@@ -60,14 +57,13 @@ def submit_feedback():
         email = form.email.data
         feedback = form.feedback.data
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        msg = Message('Feedback Submission', sender='feedback@asksibot.org', recipients=['feedback@asksibot.org'])
+        msg = Message('Feedback Submission', sender=app.config['MAIL_USERNAME'], recipients=[app.config['MAIL_USERNAME']])
         msg.body = f"Name: {name}\nEmail: {email}\nFeedback: {feedback}\nTimestamp: {timestamp}"
         mail.send(msg)
         flash('Feedback submitted successfully!', 'success')
         return redirect(url_for('thank_you'))
     return render_template('feedback-form.html', form=form)
 
-# Thank you route
 @app.route('/thank-you')
 def thank_you():
     return render_template('thank_you.html')
