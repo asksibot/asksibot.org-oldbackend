@@ -1,0 +1,14 @@
+Search for "Environment Variables" in the Start menu.
+Click "Edit the system environment variables."
+In the System Properties dialog, click "Environment Variables."
+Under "User variables" or "System variables," click "New."
+Set the variable name as EMAIL_PASSWORD and the value as your email password.
+Click "OK" and restart any open command lines or applications.
+
+ Hostinger:
+
+Log in to your control panel.
+Find the section for managing environment variables (might be under "Advanced" or "Developer" settings).
+Add a new environment variable with the name EMAIL_PASSWORD and your email password as the value.
+Save changes.
+Remember, the exact steps for Hostinger might vary, so check their documentation for precise instructions.
