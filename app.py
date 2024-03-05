@@ -6,6 +6,10 @@ from flask_mail import Mail, Message
 from datetime import datetime
 import openai
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Initialize Flask application
 app = Flask(__name__)
