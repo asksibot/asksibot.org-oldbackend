@@ -1,0 +1,16 @@
+Sent to drzollner@asksibot.com Good morning Christopher and pleased to meet you 
+ARASAAC is a project financed and coordinated by the Department of Education, Culture and Sports of the Government of Aragon (Spain).
+All the resources offered in ARASAAC, including the pictograms, are distributed under a Creative Commons License (BY-NC-SA), as explained in the Conditions of use of the portal
+https://arasaac.org/terms-of-use 
+This license implies that the pictograms may NOT be used for commercial or editorial purposes (No Commercial or NC). There is no set a commercial license that allow this kind of uses.
+In your case, we understand that you accomplish with license because you mention that your intention is research. In this case there is no problem although always is good enough to know the limits of our license in case you want to make commercial uses. 
+
+The other condition to use the pictograms is to add license terms text where you consider more suitable. Usually is enough wit add a text like this:
+
+The pictographic symbols used are the property of the Government of Aragón and have been created by Sergio Palao for ARASAAC (http://www.arasaac.org), that distributes them under Creative Commons License BY-NC-SA. 
+
+About OAuth2 at the momment is not neccesary. The API is open to use to anyway to accomplish with license terms. So you only have to make requets to the API according the documentation  https://arasaac.org/developers/api
+
+As a control method we will ad you to our API user's list. With the data (name, email, description,....) is enough. So you can begin to use the API without problem. 
+
+ We thank you if you inform us about the progress of your chatbot development. And, of course, we are pleased to see in action. 
