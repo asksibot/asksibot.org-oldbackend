@@ -1,0 +1,22 @@
+set MAIL_USERNAME=feedback@asksibot.org
+set MAIL_PASSWORD=mexicocity@2024
+set OPENAI_API_KEY=sk-q0POrG6WEWNKxMAiwuq8T3BlbkFJCZ59p9BTcfndT4AY8qdBS
+Open Command Prompt: You can search for "cmd" in your Windows search bar and open it.
+
+Set Environment Variables: Use the set command to define your environment variables. These will be available for the duration of the terminal session. If you close the Command Prompt window, you'll need to set them again.
+To set environment variables system-wide on Windows:
+
+Search for Environment Variables:
+
+Right-click on the Start button and select System.
+Click on Advanced system settings on the left sidebar.
+In the System Properties window, go to the Advanced tab and click on Environment Variables....
+Set New System-Wide Variables:
+
+Under the System variables section, click on New... to create a new system-wide environment variable.
+Enter the name of the variable (e.g., OPENAI_API_KEY) and its value. Repeat this process for each variable (MAIL_USERNAME, MAIL_PASSWORD, OPENAI_API_KEY).
+Click OK to save each variable.
+Accessing Variables:
+
+After setting them, you may need to restart your command prompt or any applications that need to access these variables to ensure they recognize the new or updated environment variables.
+By setting them as system-wide environment variables, you won't need to set them each time you open a new cmd session, and they will be accessible to any application running on your system that requires them. This method is especially useful for persistent configurations and production environments.
