@@ -1,0 +1,6 @@
+Flask
+Flask-Mail
+Flask-WTF
+certifi
+requests 
+pandas
