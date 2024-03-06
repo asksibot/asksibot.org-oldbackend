@@ -46,9 +46,11 @@ def home():
 def chatbot():
     data = request.get_json()
     user_message = data['message']
+    engine_version = os.environ.get('OPENAI_ENGINE', 'text-davinci-003')  # Dynamically get the engine version
+
     try:
         response = openai.Completion.create(
-            engine="text-davinci-003",  # You might want to update this to the latest model version
+            engine=engine_version,  # Use the dynamically set engine version
             prompt=user_message,
             max_tokens=150
         )
