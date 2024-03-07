@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asksibot Feedback Form</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 20px; }
+  .form-section { margin-bottom: 20px; }
+  label { display: block; margin-top: 10px; }
+  .rating { display: flex; justify-content: space-between; max-width: 300px; margin-top: 5px; }
+  .rating input { margin-right: 5px; }
+  .comments { margin-top: 5px; }
+  textarea { width: 100%; margin-top: 5px; resize: vertical; /* Allows vertical resizing, prevents horizontal resizing */ }
+  @media (max-width: 600px) {
+    .rating { flex-direction: column; }
+    .rating label { margin-bottom: 5px; }
+  }
+</style>
+</head>
+<body>
+
+<form action="/submit-feedback" method="POST"> <!-- Changed action to match Express.js route -->
+  <!-- Optional Email Field -->
+  <div class="form-section">
+    <label for="email">Email (Optional):</label>
+    <input type="email" id="email" name="email" placeholder="Your email address">
+  </div>
+  
+  <!-- Privacy Statement -->
+  <div class="form-section">
+    <p>Your privacy is important to us. All data collected is for internal review only and will not be shared.</p>
+  </div>
+<!-- Section 1: Engagement (View) -->
+<div class="form-section"required>
+    <h2>Section 1: Engagement (View)</h2>
+    <p>This aspect focuses on the user’s initial engagement and perception of Asksibot, including the design, interface, and accessibility features.</p>
+    
+    <label>1. How engaging did you find Asksibot's design and interface? (0-5 Scale)</label>
+    <div class="rating">
+      <label><input type="radio" name="engagement_design" value="5" required>5</label>
+      <label><input type="radio" name="engagement_design" value="4">4</label>
+      <label><input type="radio" name="engagement_design" value="3">3</label>
+      <label><input type="radio" name="engagement_design" value="2">2</label>
+      <label><input type="radio" name="engagement_design" value="1">1</label>
+      <label><input type="radio" name="engagement_design" value="0">0</label>
+    </div>
+    <textarea name="engagement_design_comments" rows="3" placeholder="Comments/Recommendations"></textarea>
+    
+    <label>2. How accessible did you find Asksibot's features? (0-5 Scale)</label>
+    <div class="rating">
+      <label><input type="radio" name="accessibility_features" value="5" required>5</label>
+      <label><input type="radio" name="accessibility_features" value="4">4</label>
+      <label><input type="radio" name="accessibility_features" value="3">3</label>
+      <label><input type="radio" name="accessibility_features" value="2">2</label>
+      <label><input type="radio" name="accessibility_features" value="1">1</label>
+      <label><input type="radio" name="accessibility_features" value="0">0</label>
+    </div>
+    <textarea name="accessibility_features_comments" rows="3" placeholder="Comments/Recommendations"></textarea>
+    
+    <label>3. To what extent did Asksibot make you interested in returning to use it again? (0-5 Scale)</label>
+    <div class="rating">
+      <label><input type="radio" name="return_interest" value="5" required>5</label>
+      <label><input type="radio" name="return_interest" value="4">4</label>
+      <label><input type="radio" name="return_interest" value="3">3</label>
+      <label><input type="radio" name="return_interest" value="2">2</label>
+      <label><input type="radio" name="return_interest" value="1">1</label>
+      <label><input type="radio" name="return_interest" value="0">0</label>
+    </div>
+    <textarea name="return_interest_comments" rows="3" placeholder="Comments/Recommendations"></textarea>
+    
+    <label>4. How effectively does Asksibot engage you? (0-5 Scale)</label>
+    <div class="rating">
+      <label><input type="radio" name="effectiveness_engagement" value="5" required>5</label>
+      <label><input type="radio" name="effectiveness_engagement" value="4">4</label>
+      <label><input type="radio" name="effectiveness_engagement" value="3">3</label>
+      <label><input type="radio" name="effectiveness_engagement" value="2">2</label>
+      <label><input type="radio" name="effectiveness_engagement" value="1">1</label>
+      <label><input type="radio" name="effectiveness_engagement" value="0">0</label>
+    </div>
+    <textarea name="effectiveness_engagement_comments" rows="3" placeholder="Comments/Recommendations"></textarea>
+    
+    <label>5. To what extent does Asksibot's design and navigation encourage you to explore further? (0-5 Scale)</label>
+    <div class="rating">
+      <label><input type="radio" name="design_navigation_encouragement" value="5" required>5</label>
+      <label><input type="radio" name="design_navigation_encouragement" value="4">4</label>
+      <label><input type="radio" name="design_navigation_encouragement" value="3">3</label>
+      <label><input type="radio" name="design_navigation_encouragement" value="2">2</label>
+      <label><input type="radio" name="design_navigation_encouragement" value="1">1</label>
+      <label><input type="radio" name="design_navigation_encouragement" value="0">0</label>
+    </div>
+    <textarea name="design_navigation_encouragement_comments" rows="3" placeholder="Comments/Recommendations"></textarea>
+  </div>
+  <!-- Section 2: Investigation (Voice) -->
+<div class="form-section"required>
+    <h2>Section 2: Investigation (Voice)</h2>
+    <p>Reflects how well Asksibot listens to and incorporates user feedback, questions, and concerns.</p>
+    
+    <label>6. How effectively does Asksibot leverage technology to solve real-world problems? (0-5 Scale)</label>
+    <div class="rating">
+      <label><input type="radio" name="technology_effectiveness" value="5"required>5</label>
+      <label><input type="radio" name="technology_effectiveness" value="4">4</label>
+      <label><input type="radio" name="technology_effectiveness" value="3">3</label>
+      <label><input type="radio" name="technology_effectiveness" value="2">2</label>
+      <label><input type="radio" name="technology_effectiveness" value="1">1</label>
+      <label><input type="radio" name="technology_effectiveness" value="0">0</label>
+    </div>
+    <textarea name="technology_effectiveness_comments" rows="3" placeholder="Comments/Recommendations"></textarea>
+    
+    <label>7. How well does the content from Asksibot help you to express what you want to communicate? (0-5 Scale)</label>
+    <div class="rating">
+      <label><input type="radio" name="content_expression" value="5"required>5</label>
+      <label><input type="radio" name="content_expression" value="4">4</label>
+      <label><input type="radio" name="content_expression" value="3">3</label>
+      <label><input type="radio" name="content_expression" value="2">2</label>
+      <label><input type="radio" name="content_expression" value="1">1</label>
+      <label><input type="radio" name="content_expression" value="0">0</label>
+    </div>
+    <textarea name="content_expression_comments" rows="3" placeholder="Comments/Recommendations"></textarea>
+    
+    <label>8. How well does Asksibot provide resources and information for investigating real-world problems? (0-5 Scale)</label>
+    <div class="rating">
+      <label><input type="radio" name="resources_information" value="5"required>5</label>
+      <label><input type="radio" name="resources_information" value="4">4</label>
+      <label><input type="radio" name="resources_information" value="3">3</label>
+      <label><input type="radio" name="resources_information" value="2">2</label>
+      <label><input type="radio" name="resources_information" value="1">1</label>
+      <label><input type="radio" name="resources_information" value="0">0</label>
+    </div>
+    <textarea name="resources_information_comments" rows="3" placeholder="Comments/Recommendations"></textarea>
+    
+    <label>9. Rate Asksibot's effectiveness in offering a variety and relevance of content. (0-5 Scale)</label>
+    <div class="rating">
+      <label><input type="radio" name="content_variety_relevance" value="5"required>5</label>
+      <label><input type="radio" name="content_variety_relevance" value="4">4</label>
+      <label><input type="radio" name="content_variety_relevance" value="3">3</label>
+      <label><input type="radio" name="content_variety_relevance" value="2">2</label>
+      <label><input type="radio" name="content_variety_relevance" value="1">1</label>
+      <label><input type="radio" name="content_variety_relevance" value="0">0</label>
+    </div>
+    <textarea name="content_variety_relevance_comments" rows="3" placeholder="Comments/Recommendations"></textarea>
+  </div>
+  <label>10. How well does Asksibot respond to your feedback, questions, and concerns? (0-5 Scale)</label>
+  <div class="rating">
+    <label><input type="radio" name="feedback_response" value="5"required>5</label>
+    <label><input type="radio" name="feedback_response" value="4">4</label>
+    <label><input type="radio" name="feedback_response" value="3">3</label>
+    <label><input type="radio" name="feedback_response" value="2">2</label>
+    <label><input type="radio" name="feedback_response" value="1">1</label>
+    <label><input type="radio" name="feedback_response" value="0">0</label>
+  </div>
+  <textarea name="feedback_response_comments" rows="3" placeholder="Comments/Recommendations"></textarea>
+  
+  <label>11. How satisfied are you with the quality and accuracy of the content from Asksibot? (0-5 Scale)</label>
+  <div class="rating">
+    <label><input type="radio" name="content_quality_accuracy" value="5"required>5</label>
+    <label><input type="radio" name="content_quality_accuracy" value="4">4</label>
+    <label><input type="radio" name="content_quality_accuracy" value="3">3</label>
+    <label><input type="radio" name="content_quality_accuracy" value="2">2</label>
+    <label><input type="radio" name="content_quality_accuracy" value="1">1</label>
+    <label><input type="radio" name="content_quality_accuracy" value="0">0</label>
+  </div>
+  <textarea name="content_quality_accuracy_comments" rows="3" placeholder="Comments/Recommendations"></textarea>
+  
+  <label>12. How well does Asksibot understand your needs and preferences? (0-5 Scale)</label>
+  <div class="rating">
+    <label><input type="radio" name="needs_preferences" value="5"required>5</label>
+    <label><input type="radio" name="needs_preferences" value="4">4</label>
+    <label><input type="radio" name="needs_preferences" value="3">3</label>
+    <label><input type="radio" name="needs_preferences" value="2">2</label>
+    <label><input type="radio" name="needs_preferences" value="1">1</label>
+    <label><input type="radio" name="needs_preferences" value="0">0</label>
+  </div>
+  <textarea name="needs_preferences_comments" rows="3" placeholder="Comments/Recommendations"></textarea>
+<!-- Section 3: Collaboration (Value) -->
+<div class="form-section"required>
+    <h2>Section 3: Collaboration (Value)</h2>
+    <p>Measures how well Asksibot supports and enhances user collaboration and communication.</p>
+    
+    <label>13. How well does Asksibot facilitate collaboration and communication among users? (0-5 Scale)</label>
+    <div class="rating">
+      <label><input type="radio" name="collaboration_communication" value="5"required>5</label>
+      <label><input type="radio" name="collaboration_communication" value="4">4</label>
+      <label><input type="radio" name="collaboration_communication" value="3">3</label>
+      <label><input type="radio" name="collaboration_communication" value="2">2</label>
+      <label><input type="radio" name="collaboration_communication" value="1">1</label>
+      <label><input type="radio" name="collaboration_communication" value="0">0</label>
+    </div>
+    <textarea name="collaboration_communication_comments" rows="3" placeholder="Comments/Recommendations"></textarea>
+    
+    <label>14. How well does Asksibot support and enhance your creativity and productivity? (0-5 Scale)</label>
+    <div class="rating">
+      <label><input type="radio" name="creativity_productivity" value="5"required>5</label>
+      <label><input type="radio" name="creativity_productivity" value="4">4</label>
+      <label><input type="radio" name="creativity_productivity" value="3">3</label>
+      <label><input type="radio" name="creativity_productivity" value="2">2</label>
+      <label><input type="radio" name="creativity_productivity" value="1">1</label>
+      <label><input type="radio" name="creativity_productivity" value="0">0</label>
+    </div>
+    <textarea name="creativity_productivity_comments" rows="3" placeholder="Comments/Recommendations"></textarea>
+    
+    <label>15. How well does Asksibot help you to achieve your goals and objectives? (0-5 Scale)</label>
+    <div class="rating">
+      <label><input type="radio" name="goals_objectives" value="5"required>5</label>
+      <label><input type="radio" name="goals_objectives" value="4">4</label>
+      <label><input type="radio" name="goals_objectives" value="3">3</label>
+      <label><input type="radio" name="goals_objectives" value="2">2</label>
+      <label><input type="radio" name="goals_objectives" value="1">1</label>
+      <label><input type="radio" name="goals_objectives" value="0">0</label>
+    </div>
+    <textarea name="goals_objectives_comments" rows="3" placeholder="Comments/Recommendations"></textarea>
+    
+    <label>16. How well does Asksibot provide feedback and guidance to improve your performance and learning? (0-5 Scale)</label>
+    <div class="rating">
+      <label><input type="radio" name="feedback_guidance" value="5"required>5</label>
+      <label><input type="radio" name="feedback_guidance" value="4">4</label>
+      <label><input type="radio" name="feedback_guidance" value="3">3</label>
+      <label><input type="radio" name="feedback_guidance" value="2">2</label>
+      <label><input type="radio" name="feedback_guidance" value="1">1</label>
+      <label><input type="radio" name="feedback_guidance" value="0">0</label>
+    </div>
+    <textarea name="feedback_guidance_comments" rows="3" placeholder="Comments/Recommendations"></textarea>
+  </div>
+  <!-- Section 4: Evaluation (Verify) -->
+<div class="form-section"required>
+    <h2>Section 4: Evaluation (Verify)</h2>
+    <p>Evaluates how well Asksibot helps users to assess and reflect on their own and others’ work.</p>
+    
+    <label>17. How well does Asksibot help you to evaluate the quality and reliability of the content you produce or consume? (0-5 Scale)</label>
+    <div class="rating">
+      <label><input type="radio" name="content_evaluation" value="5"required>5</label>
+      <label><input type="radio" name="content_evaluation" value="4">4</label>
+      <label><input type="radio" name="content_evaluation" value="3">3</label>
+      <label><input type="radio" name="content_evaluation" value="2">2</label>
+      <label><input type="radio" name="content_evaluation" value="1">1</label>
+      <label><input type="radio" name="content_evaluation" value="0">0</label>
+    </div>
+    <textarea name="content_evaluation_comments" rows="3" placeholder="Comments/Recommendations"></textarea>
+    
+    <label>18. How well does Asksibot help you to reflect on your own and others' work and learning? (0-5 Scale)</label>
+    <div class="rating">
+      <label><input type="radio" name="reflection_work_learning" value="5"required>5</label>
+      <label><input type="radio" name="reflection_work_learning" value="4">4</label>
+      <label><input type="radio" name="reflection_work_learning" value="3">3</label>
+      <label><input type="radio" name="reflection_work_learning" value="2">2</label>
+      <label><input type="radio" name="reflection_work_learning" value="1">1</label>
+      <label><input type="radio" name="reflection_work_learning" value="0">0</label>
+    </div>
+    <textarea name="reflection_work_learning_comments" rows="3" placeholder="Comments/Recommendations"></textarea>
+    
+    <label>19. How well does Asksibot help you to identify and address your strengths and weaknesses? (0-5 Scale)</label>
+    <div class="rating">
+      <label><input type="radio" name="strengths_weaknesses" value="5"required>5</label>
+      <label><input type="radio" name="strengths_weaknesses" value="4">4</label>
+      <label><input type="radio" name="strengths_weaknesses" value="3">3</label>
+      <label><input type="radio" name="strengths_weaknesses" value="2">2</label>
+      <label><input type="radio" name="strengths_weaknesses" value="1">1</label>
+      <label><input type="radio" name="strengths_weaknesses" value="0">0</label>
+    </div>
+    <textarea name="strengths_weaknesses_comments" rows="3" placeholder="Comments/Recommendations"></textarea>
+    
+    <label>20. How well does Asksibot help you to monitor and improve your progress and performance? (0-5 Scale)</label>
+    <div class="rating">
+      <label><input type="radio" name="progress_performance" value="5"required>5</label>
+      <label><input type="radio" name="progress_performance" value="4">4</label>
+      <label><input type="radio" name="progress_performance" value="3">3</label>
+      <label><input type="radio" name="progress_performance" value="2">2</label>
+      <label><input type="radio" name="progress_performance" value="1">1</label>
+      <label><input type="radio" name="progress_performance" value="0">0</label>
+    </div>
+    <textarea name="progress_performance_comments" rows="3" placeholder="Comments/Recommendations"></textarea>
+  </div>
+  
+  <!-- Submit Button -->
+  <div class="form-section">
+    <button type="submit">Submit Feedback</button>
+  </div>
+  </form>
+  
+  </body>
+  </html>
+  
