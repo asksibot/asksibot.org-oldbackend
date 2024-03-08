@@ -18,33 +18,27 @@
             width: 50%;
             margin-top: 20px;
         }
-        .feedback-instructions {
-            font-size: 0.9rem;
-            text-align: center;
-            margin-top: 20px;
+        /* New style for .small-text goes here */
+        .small-text {
+            font-size: 0.8em; /* Makes the text smaller */
         }
-        .feedback-form {
-            display: none; /* Initially hide the feedback form */
-            text-align: left;
-            margin-top: 20px;
-        }
+        /* Continue with other styles after this */
         .chat-area {
             margin-top: 20px;
             text-align: left;
             border: 1px solid #ccc;
             padding: 10px;
-            height: 300px; /* Set a fixed height for the chat area */
-            overflow-y: auto; /* Enable vertical scrolling */
+            min-height: 100px;
+            max-height: 300px;
+            overflow-y: auto;
         }
-        .user-message {
+        .user-message, .bot-message {
             background-color: #f0f0f0;
             padding: 10px;
             margin-bottom: 5px;
         }
         .bot-message {
             background-color: #e1f7d5;
-            padding: 10px;
-            margin-bottom: 5px;
         }
         .input-container {
             margin-top: 20px;
@@ -56,11 +50,26 @@
             padding: 10px;
         }
         .input-container button {
-            padding: 10px 20px;
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            cursor: pointer;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px; /* Default margin */
+}
+
+@media (max-width: 600px) {
+    .input-container button {
+        margin-left: 5px; /* Smaller margin for small devices */
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+        .message-anim {
+            animation: fadeIn 0.5s ease-out;
         }
     </style>
 </head>
@@ -71,55 +80,68 @@
         <h1>Asksibot</h1>
         <p>Developed on OpenAI by Christopher Horne, OTR/L</p>
     </div>
-    <div class="chat-area" id="chatArea"></div> <!-- Container for chat messages -->
+    <div class="chat-area" id="chatArea"></div>
     <div class="input-container">
-        <input type="text" id="userMessageInput" placeholder="Message Asksibot...">
+        <input type="text" id="userMessageInput" placeholder="Ask Asksibot a question..." autocomplete="off">
         <button id="sendMessageButton">Send</button>
     </div>
     <div class="footer">
-        <p>An Occupational Therapy ChatGPT specializing in neurodiversity and sensory challenges.<br>ChatGPTs can make mistakes. Consider checking important information.</p>
+        <p>An Occupational Therapy ChatGPT specializing in neurodiversity and sensory challenges.<br>
+        <span class="small-text">ChatGPTs can make mistakes. Consider checking important information.</span></p>
     </div>
-    <!-- Feedback button moved below footer text -->
     <button id="showFeedbackForm" style="margin-top: 20px;">Feedback</button>
-    <!-- Feedback Form Section Removed -->
 </div>
 <script>
     document.getElementById('showFeedbackForm').addEventListener('click', function() {
-        window.location.href = 'feedback_form.html'; // Redirect to the feedback form page
+        window.location.href = 'feedback_form.html';
     });
 
     document.getElementById('sendMessageButton').addEventListener('click', async function() {
         const userMessage = document.getElementById('userMessageInput').value;
-        if (!userMessage.trim()) return; // Ignore empty messages
+        if (!userMessage.trim()) return;
         appendMessage('You', userMessage, 'user-message');
 
-        // Updated to send the user message to your Flask application's chatbot endpoint
-        const response = await fetch('/chatbot', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ message: userMessage })
-        });
+        try {
+            const response = await fetch('/chatbot', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: userMessage })
+            });
 
-        if (response.ok) {
-            const data = await response.json();
-            const botResponse = data.bot_response; // Adjust based on the JSON response structure from your Flask app
-            appendMessage('Bot', botResponse, 'bot-message');
-        } else {
-            console.error('Error:', response.statusText);
-            // Optionally, inform the user that there was an issue processing their message
+            if (response.ok) {
+                const data = await response.json();
+                const botResponse = data.bot_response;
+                appendMessage('Bot', botResponse, 'bot-message');
+            } else {
+                console.error('Error:', response.statusText);
+                // Optionally, display an error message to the user
+            }
+        } catch (error) {
+            console.error('Fetch error:', error);
+            // Optionally, display an error message to the user
         }
 
-        document.getElementById('userMessageInput').value = ''; // Clear input field after sending
+        // Clear the input field
+        document.getElementById('userMessageInput').value = '';
+    });
+
+    document.getElementById('userMessageInput').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            document.getElementById('sendMessageButton').click();
+        }
     });
 
     function appendMessage(sender, message, className) {
         const chatArea = document.getElementById('chatArea');
         const messageElement = document.createElement('div');
         messageElement.textContent = `${sender}: ${message}`;
-        messageElement.classList.add(className);
+        messageElement.classList.add(className, 'message-anim');
         chatArea.appendChild(messageElement);
-        chatArea.scrollTop = chatArea.scrollHeight; // Scroll to bottom
+        chatArea.scrollTop = chatArea.scrollHeight;
     }
 </script>
+</body>
+</html>
