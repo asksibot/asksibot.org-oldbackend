@@ -4,3 +4,10 @@ Flask-WTF
 certifi
 requests 
 pandas
+python-dotenv
+openai
+openpyxl
+waitress
+Flask-SQLA1chemy
+Flask--Migrate
+Flask-Login
