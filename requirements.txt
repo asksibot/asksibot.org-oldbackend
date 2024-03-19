@@ -8,6 +8,6 @@ python-dotenv
 openai
 openpyxl
 waitress
-Flask-SQLA1chemy
-Flask--Migrate
+Flask-SQLAlchemy
+Flask-Migrate
 Flask-Login
